@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- <button id="getPost">Get Post</button> -->
+    <div id="post_block"></div>
+
+    <script id="template" type="text/template">
+        {{#post}}
+        <a href="detail.html?id={{id}}">
+            <h2>{{id}}</h2>
+            <h3>{{title}}</h3>
+            <p>{{body}}</p>
+        </a>
+        {{/post}}
+    </script>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/mustache.min.js"></script>
+
+    <script>
+        // document.getElementById('getPost').addEventListener('click', getPost);
+
+        async function getPost(){
+            // fetch('db.json')
+            // .then((response) => response.text())
+            // .then((data) => {
+            //     document.getElementById('post_block').innerHTML = data;
+            // })
+
+            // const getApi = await fetch('db.json');
+            const getApi = await fetch('http://localhost:3000/posts');
+            const data = await getApi.json();
+
+            let template = document.getElementById('template');
+            let template_output = document.getElementById('post_block');
+            let output = Mustache.render(template.innerHTML, {post: data});
+            template_output.innerHTML = output;
+        }
+
+    getPost();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail</title>
+</head>
+<body>
+    
+    <div id="post_detail"></div>
+
+    <script id="detail_template" type="text/template">
+        <h2>{{id}}</h2>
+        <h3>{{title}}</h3>
+        <p>{{body}}</p>
+    </script>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/mustache.min.js"></script>
+
+    <script>
+        var url = window.location;
+        var search_url = new URLSearchParams(url.search);
+        const id = search_url.get('id');
+
+        async function post_detail(){
+            const detailApi = await fetch(`http://localhost:3000/posts/${id}`);
+            const detail_template = await detailApi.json();
+
+            let template = document.getElementById('detail_template');
+            let template_output = document.getElementById('post_detail');
+            let output = Mustache.render(template.innerHTML, detail_template);
+
+            template_output.innerHTML = output;
+        }
+        
+        post_detail();
+
+    //     var url = window.location;
+    //     const urlParams = new URLSearchParams(url.search);
+    //     const id = urlParams.get('id')
+    
+    
+    //     const  getDetail = async () => {
+    //        const req  =  await fetch(`http://localhost:3000/posts/${id}`);
+    //        const data  = await req.json();
+    //        var template = document.getElementById('detail_template');
+    //        var template_output = document.getElementById('post_detail');
+    //        var output = Mustache.render(template.innerHTML, data)
+           
+    //        template_output.innerHTML = output;  
+    //    }
+   
+   
+    //    getDetail()
+    </script>
+
+</body>
+</html>
