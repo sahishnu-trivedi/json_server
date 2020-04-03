@@ -79,8 +79,8 @@
         const id = search_url.get('id');
 
         async function post_detail(){
-            // const detailApi = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
-            const detailApi = await fetch(`http://localhost:3000/posts/${id}`);
+            const detailApi = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+            // const detailApi = await fetch(`http://localhost:3000/posts/${id}`);
             const detail_template = await detailApi.json();
 
             let template = document.getElementById('detail_template');
@@ -93,8 +93,8 @@
         post_detail();
 
         const deletePost = (id) => {
-            // $.ajax({url: `https://jsonplaceholder.typicode.com/posts/${id}`, method: 'DELETE'})
-            $.ajax({url: `http://localhost:3000/posts/${id}`, method: 'DELETE'})
+            $.ajax({url: `https://jsonplaceholder.typicode.com/posts/${id}`, method: 'DELETE'})
+            // $.ajax({url: `http://localhost:3000/posts/${id}`, method: 'DELETE'})
             .then(() => {
                 console.log('Deleted');
                 window.location.href = '/';
@@ -106,8 +106,8 @@
             document.getElementById('card_body').innerHTML = title_input;
             let body_input = document.getElementById('body_input').value;
             document.getElementById('card_title').innerHTML = body_input;
-            // $.ajax({url: `https://jsonplaceholder.typicode.com/posts/${id}`, method: 'DELETE'})
-            $.ajax({url: `http://localhost:3000/posts/${id}`, method: 'PUT', data:{"title": title_input, "body": body_input}})
+            $.ajax({url: `https://jsonplaceholder.typicode.com/posts/${id}`, method: 'PUT', data:{"title": title_input, "body": body_input}})
+            // $.ajax({url: `http://localhost:3000/posts/${id}`, method: 'PUT', data:{"title": title_input, "body": body_input}})
             .then(() => {
                 console.log('Updated');
             })
