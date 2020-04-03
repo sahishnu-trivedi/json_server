@@ -8,17 +8,38 @@
     <title>Detail</title>
 </head>
 <body>
-    
-    <div id="post_detail"></div>
+    <header>
+        <nav class="navbar navbar-dark bg-dark mb-5">
+            <div class="container">
+                <a class="navbar-brand" href="#">POSTS</a>
 
-    <script id="detail_template" type="text/template">
-        <h2>{{id}}</h2>
-        <h3>{{title}}</h3>
-        <p>{{body}}</p>
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+            </div>
+        </nav>
+    </header>
 
-        <button id="update" onclick="updatePost({{id}})">Update</button>
-        <button id="delete" onclick="deletePost({{id}})">Delete</button>
-    </script>
+    <div class="container">
+        <div id="post_detail"></div>
+
+        <div class="row">
+            <script id="detail_template" type="text/template">
+                <div class="col-12">
+                    <div class="card p-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{title}}</h5>
+                            <p class="card-text"> <span> {{id}} </span> {{body}}</p> 
+                            <button id="update" class="btn btn-primary" onclick="updatePost({{id}})">Update</button>
+                            <button id="delete" class="btn btn-danger" onclick="deletePost({{id}})">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </script>
+        </div>
+
+    </div>  <!-- container -->
 
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/mustache.min.js"></script>
